@@ -5,7 +5,7 @@ To implement 4 bit up and down counters and validate  functionality.
 PC, Cyclone II , USB flasher
 # SOFTWARE REQUIRED:   
 Quartus prime
-# THEORY:
+# THEORY: 
 
 ## UP COUNTER: 
 The counter is a digital sequential circuit and here it is a 4 bit counter, which simply means it can count from 0 to 15 and vice versa based upon the direction of counting (up/down). 
@@ -39,7 +39,7 @@ Four-bit “Up” Counter
 
 
 
-## DOWN COUNTER:
+## DOWN COUNTER: 
 
 As well as counting “up” from zero and increasing or incrementing to some preset value, it is sometimes necessary to count “down” from a predetermined value to zero allowing us to produce an output that activates when the zero count or some other pre-set value is reached.
 
@@ -49,67 +49,78 @@ This type of counter is normally referred to as a Down Counter, (CTD). In a bina
 
 4-bit Count Down Counter
 # PROCEDURE:
+1.Create module projectname(input ,output) to start the verilog programming.
+2.create a if loop condition to increase the count in counter_up function.
+3.Similarly, create another loop for the down counter.
+4.End the verilog program using keyword endmodule.
+5.Get the timing diagram and RTL realization diagram for respective Counters.
 
-1.Create a new project in QuartusII software.
-2.Name the project as uc for upcounter and dc for down counter.
-3.Create a new verilog hdl file in the project file.
-4.Name the module as dc and uc for down counter and up counter.
-5.Within the module declare input and output variables.
-6.Create a loop using if-else with condition parameter as reset value.
-7.End the loop.
-8.End the module.
 
-# PROGRAM:
-~~~
+# PROGRAM: 
+```
+
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by:Yuvadarshini S 
-RegisterNumber:  212221230126
+Developed by: Yuvadarshini S
+Register Number:  212221230126
 
-UP COUNTER:
 
-module uc(input CLK,input reset,output [0:3]counter);
-reg [0:3] counter_up;
-always@(posedge CLK or posedge reset)
-begin
-if (reset)
-counter_up<=4'd0;
-else
-counter_up<=counter_up+4'd1;
-end
-assign counter=counter_up;
-endmodule
+UP COUNTER
 
-DOWN COUNTER:
-
-module dc(input clk,input reset,output[3:0]counter);
-reg[3:0]counter_down;
-always@(posedge clk or posedge reset)
+module upcount(clock,reset,up);
+input clock,reset;
+output reg[0:2] up;
+always@(posedge clock or posedge reset)
 begin
 if(reset)
-counter_down<=4'hf;
+up=3'b 000;
 else
-counter_down<=counter_down-4'd1;
+up=up+1;
 end
-assign counter = counter_down;
 endmodule
-~~~
+
+
+DOWN COUNTER
+
+module downcount(clock,reset,down);
+input clock,reset;
+output reg[2:0] down;
+always@(posedge clock or posedge reset)
+begin
+if(reset)
+down=3'b 111;
+else
+down=down-1;
+end
+endmodule
+
+```
 # RTL LOGIC UP COUNTER AND DOWN COUNTER:  
+
 ## UP COUNTER:
-![git](rtl%20up.jpg)
+![UP_RTL](https://user-images.githubusercontent.com/93901857/201064110-26df27d4-9897-4f5b-9a69-b1829269ed8c.png)
+
 ## DOWN COUNTER:
-![git](rtl%20down.jpg) 
+![DOWN_RTL](https://user-images.githubusercontent.com/93901857/201305443-47033f0d-1c43-4b49-9a00-b8ae07b271ea.png)
 
 # TIMING DIGRAMS FOR COUNTER:  
+
 ## UP COUNTER:
-![git](up%20counter%200.jpg)
+![UP_TIME](https://user-images.githubusercontent.com/93901857/201064120-e2e79d7b-8b0d-4d49-9333-2322b85d1b46.png)
+
+
 ## DOWN COUNTER:
-![git](down%200.jpg)
+![DOWN_TIME](https://user-images.githubusercontent.com/93901857/201306067-89ff8404-7c98-4966-9f53-d1b80c2be57b.png)
 
 # TRUTH TABLE: 
+
+
 ## UP COUNTER:
-![git](truth%20up.png)
+![TT1](https://user-images.githubusercontent.com/93901857/200124061-ad25ab47-d9cf-4a8f-9d70-d31273557a67.jpg)
+
 ## DOWN COUNTER:
-![git](truth%20down.png)
+
+![TT2](https://user-images.githubusercontent.com/93901857/200124063-e97b22e5-7cdd-4345-a9be-bb8b055dbb4b.jpg)
+
 
 # RESULT: 
-Hence the Four bit Up counter and Down counter is implemented successfully and its functionality is validated.
+Thus 3 bit up and down counters is implemented and its functionality is validated.
